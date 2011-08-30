@@ -83,6 +83,12 @@ int board_init(void)
 	/* boot param addr */
 	gd->bd->bi_boot_params = (OMAP34XX_SDRC_CS0 + 0x100);
 
+	if (!omap_request_gpio(57)) {
+		omap_set_gpio_direction(57, 0);
+		omap_set_gpio_dataout(57, 1);
+	}
+	omap_free_gpio(57);
+
 #if defined(CONFIG_STATUS_LED) && defined(STATUS_LED_BOOT)
 	status_led_set (STATUS_LED_BOOT, STATUS_LED_ON);
 #endif
