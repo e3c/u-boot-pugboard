@@ -208,91 +208,12 @@
 #define CONFIG_BOOTDELAY		3
 
 #define CONFIG_EXTRA_ENV_SETTINGS \
-	"loadaddr=0x80200000\0" \
-	"rdaddr=0x81000000\0" \
-	"usbtty=cdc_acm\0" \
-	"console=ttyS2,115200n8\0" \
-	"mpurate=auto\0" \
-	"buddy=none "\
-	"optargs=\0" \
-	"camera=lbcm3m1\0" \
-	"vram=12M\0" \
-	"dvimode=640x480MR-16@60\0" \
-	"defaultdisplay=dvi\0" \
-	"mmcdev=0\0" \
-	"mmcroot=/dev/mmcblk0p2 rw\0" \
-	"mmcrootfstype=ext3 rootwait\0" \
-	"nandroot=/dev/mtdblock4 rw\0" \
-	"nandrootfstype=jffs2\0" \
-	"ramroot=/dev/ram0 rw ramdisk_size=65536 initrd=0x81000000,64M\0" \
-	"ramrootfstype=ext2\0" \
-	"mmcargs=setenv bootargs console=${console} " \
-		"${optargs} " \
-		"mpurate=${mpurate} " \
-		"buddy=${buddy} "\
-		"camera=${camera} "\
-		"vram=${vram} " \
-		"omapfb.mode=dvi:${dvimode} " \
-		"omapdss.def_disp=${defaultdisplay} " \
-		"root=${mmcroot} " \
-		"rootfstype=${mmcrootfstype}\0" \
-	"nandargs=setenv bootargs console=${console} " \
-		"${optargs} " \
-		"mpurate=${mpurate} " \
-		"buddy=${buddy} "\
-		"camera=${camera} "\
-		"vram=${vram} " \
-		"omapfb.mode=dvi:${dvimode} " \
-		"omapdss.def_disp=${defaultdisplay} " \
-		"root=${nandroot} " \
-		"rootfstype=${nandrootfstype}\0" \
-	"bootenv=uEnv.txt\0" \
-	"loadbootenv=fatload mmc ${mmcdev} ${loadaddr} ${bootenv}\0" \
-	"importbootenv=echo Importing environment from mmc ...; " \
-		"env import -t $loadaddr $filesize\0" \
-	"ramargs=setenv bootargs console=${console} " \
-		"${optargs} " \
-		"mpurate=${mpurate} " \
-		"buddy=${buddy} "\
-		"camera=${camera} "\
-		"vram=${vram} " \
-		"omapfb.mode=dvi:${dvimode} " \
-		"omapdss.def_disp=${defaultdisplay} " \
-		"root=${ramroot} " \
-		"rootfstype=${ramrootfstype}\0" \
-	"loadramdisk=fatload mmc ${mmcdev} ${rdaddr} ramdisk.gz\0" \
-	"loaduimagefat=fatload mmc ${mmcdev} ${loadaddr} uImage\0" \
-	"loaduimage=ext2load mmc ${mmcdev}:2 ${loadaddr} /boot/uImage\0" \
-	"mmcboot=echo Booting from mmc ...; " \
-		"run mmcargs; " \
-		"bootm ${loadaddr}\0" \
-	"nandboot=echo Booting from nand ...; " \
-		"run nandargs; " \
-		"nand read ${loadaddr} 280000 400000; " \
-		"bootm ${loadaddr}\0" \
-	"ramboot=echo Booting from ramdisk ...; " \
-		"run ramargs; " \
-		"bootm ${loadaddr}\0" \
+	"loadaddr=0x80200000\0"
 
 #define CONFIG_BOOTCOMMAND \
-	"if mmc rescan ${mmcdev}; then " \
-		"if userbutton; then " \
-			"setenv bootenv user.txt;" \
-		"fi;" \
-		"echo SD/MMC found on device ${mmcdev};" \
-		"if run loadbootenv; then " \
-			"echo Loaded environment from ${bootenv};" \
-			"run importbootenv;" \
-		"fi;" \
-		"if test -n $uenvcmd; then " \
-			"echo Running uenvcmd ...;" \
-			"run uenvcmd;" \
-		"fi;" \
-		"if run loaduimage; then " \
-			"run mmcboot;" \
-		"fi;" \
-	"fi;" \
-	"run nandboot;"
+	"mmc rescan 0; "\
+	"fatload mmc 0 0x80200000 user.scr; "\
+	"source 0x80200000; "
 
 #define CONFIG_AUTO_COMPLETE		1
 /*
