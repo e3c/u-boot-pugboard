@@ -227,7 +227,7 @@ const omap3_sysinfo sysinfo = {
 	MUX_VAL(CP(MCBSP3_CLKX),	(IDIS | PTD | DIS | M4)) /*UART2_TX*/\
 	MUX_VAL(CP(MCBSP3_FSX),		(IEN | PTD | DIS | M4)) /*UART2_RX*/\
 	MUX_VAL(CP(UART2_CTS),		(IDIS | PTD | DIS | M4)) /*GPIO_144*/\
-	MUX_VAL(CP(UART2_RTS),		(IDIS | PTD | DIS | M4)) /*GPIO_145*/\
+	MUX_VAL(CP(UART2_RTS),		(IEN  | PTD | DIS | M4)) /*GPIO_145*/\
 	MUX_VAL(CP(UART2_TX),		(IDIS | PTD | DIS | M4)) /*GPIO_146*/\
 	MUX_VAL(CP(UART2_RX),		(IEN  | PTD | DIS | M4)) /*GPIO_147*/\
  /*Modem Interface */\
@@ -400,7 +400,7 @@ const omap3_sysinfo sysinfo = {
 	MUX_VAL(CP(MCBSP3_DR),		(IEN | PTD | DIS | M4)) /*GPIO_142*/\
 	MUX_VAL(CP(MCBSP3_CLKX),	(IDIS | PTD | DIS | M4)) /*GPIO_141*/\
 	MUX_VAL(CP(UART2_CTS),		(IDIS | PTD | DIS | M4)) /*UART2_CTS*/\
-	MUX_VAL(CP(UART2_RTS),		(IDIS | PTD | DIS | M4)) /*UART2_RTS*/\
+	MUX_VAL(CP(UART2_RTS),		(IEN  | PTD | DIS | M4)) /*UART2_RTS*/\
 	MUX_VAL(CP(UART2_TX),		(IDIS | PTD | DIS | M4)) /*UART2_TX*/\
 	MUX_VAL(CP(DSS_DATA0),		(IDIS | PTD | DIS | M7)) /*safe_mode*/\
 	MUX_VAL(CP(DSS_DATA1),		(IDIS | PTD | DIS | M7)) /*safe_mode*/\
